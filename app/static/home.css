@@ -1,0 +1,30 @@
+#button
+		{
+			/* color: white; */
+			/*border: 1px solid gray; */
+		}
+
+#content
+{
+			text-align: center;
+			/* this padding is 25 % of the div content */
+			padding-top: 25%;
+			/*color: white; */
+}
+		body
+		{
+			font-family: 'Noto Serif SC', serif;
+			font: bold;
+			background: url(https://images.unsplash.com/photo-1542841791-6ef97dd1fad4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+		    color: white;
+			/* resize the image */
+			background-size: cover;
+			/* change position */
+			background-position: right;
+			background-repeat: no-repeat;
+		}
+		h1{
+			font-weight: 700;
+			/* size of word is 5 times of its parent element */
+			font-size: 5em;
+		}

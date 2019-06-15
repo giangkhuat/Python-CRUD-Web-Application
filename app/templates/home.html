@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CARE - The free and open source database application for everyone </title>
+	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css?fbclid=IwAR0Hi3cxcdMHAUavUaWhndNiLQZWgHQIjB758juIlRj_8oQUHXd8DRhHz-o">
+	<link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:400,600" rel="stylesheet">
+	<style type="text/css">
+		/* center everything */
+		#button
+		{
+			/* color: white; */
+			/*border: 1px solid gray; */
+		}
+		#content
+		{
+			text-align: center;
+			/* this padding is 25 % of the div content */
+			padding-top: 25%;
+			/*color: white; */
+		}
+		body
+		{
+			font-family: 'Noto Serif SC', serif;
+			font: bold;
+			background: url(https://images.unsplash.com/photo-1496661415325-ef852f9e8e7c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1099&q=80);
+			color: white;
+			/* resize the image */
+			background-size: cover;
+			/* change position */
+			background-position: right;
+			background-repeat: no-repeat;
+		}
+		h1{
+			font-weight: 700;
+			/* size of word is 5 times of its parent element */
+			font-size: 5em;
+		}
+	</style>
+
+
+
+</head>
+
+<!--
+	steps: 
+	* create a container
+	create the div with class row to create the grid
+	the first row has just one column , so set it to col-lg-12
+	* put in content by h1, h3, hr, button
+	* center everything
+	-->
+<body>
+<nav class="navbar navbar-inverse  navbar-fixed-top">
+	<!-- changing container-fluid to conainer to make the content more center -->
+  <div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">CARE</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+     
+      <ul class="nav navbar-nav navbar-right">
+          {% if current_user.is_authenticated %}
+          <li> <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a> </li>
+          <li> <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout </a> </li>
+          {% else %}
+          <li><a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a> </li>
+          <li><a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a> </li>
+          {% endif %}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+				<div id="content">
+					<!-- h1 would go all the way accross so we need to center it -->
+				<h1>CARE</h1>
+				<h3>The Free and Open Source Database for Organizations</h3>
+				<hr>
+				<!-- the btn is just a boostrap default version we can search on getbootstrap -->
+				<button class="btn btn-default btn-lg" >
+					<!-- <span id="button" > -->
+                        <a id="button" href="{{ url_for('login') }}">
+                            Register
+                        </a>
+                   <!--  </span> -->
+				</button>
+				</div>	
+		</div>
+	</div>
+</div>
+<!-- we need jQurry for the navbar and for the javascript file below to work so put this before loading javascript-->
+<!-- search jQuerry cdn-->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+
+</body>
+</html>

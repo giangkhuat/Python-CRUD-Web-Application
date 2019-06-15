@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+   <div class="media">
+      <!-- User can insert profile image here
+      <img class="rounded-circle" src="{{ url_for('static', filename='profile-pics/')}}">
+      -->
+      <div class="media-body">
+         <h3 class="account-heading">
+            {{ current_user.username }}
+         </h3>
+         <p class="text-secondary">{{ current_user.email }}</p>
+      </div>
+   </div>
+   <button class="btn btn-info" style="font-face: 'Comic Sans MS'; font-size: larger; color: white; background-color: #e6e6e6" >
+      <a id="button" href="{{ url_for('insert_donor') }}">
+         Add Donor
+      </a>
+   </button>
+</div>
+<div class="content-section">
+   <table class = 'table table-hover' style = 'margin-left: 30px; margin-right: 100px; width: 90%;'>
+      <thead>
+      <tr>
+         <th>Full Name</th>
+         <th>Contact Email</th>
+         <th>Donation Amount</th>
+         <th> Donate Event</th>
+         <!--
+            <th>EDIT</th>
+         <th>DELETE</th>
+         </tr>
+         -->
+      </thead>
+
+      {% for donor in donors %}
+      <tr>
+         <td>{{donor["name"]}}</td>
+         <td>{{donor["contact_email"]}}</td>
+         <td>{{donor['donation_amount']}}</td>
+         <td>{{donor['donate_event']}}</td>
+
+      </tr>
+      {% endfor %}
+   </table>
+
+</div>
+
+{% endblock content %}
