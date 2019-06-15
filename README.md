@@ -31,3 +31,11 @@ The program will allow users to:
 * Database creation
 * Database initialization
 * Deployment instructions
+
+# References
+
+* Corey Schafer Python Flask Tutorial: Full-featured Web Application
+
+Link : [https://github.com/CoreyMSchafer/code_snippets]
+
+* Colt Steele's Web Developer Tutorial on Academy
