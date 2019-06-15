@@ -6,7 +6,7 @@ Author:  Giang Khuat
 Mentor: Namrata Bilurkar
 
 *This is a Python application that is started during the Learn IT, Girl mentorship program for women in Spring 2019.
-The application uses Flask framework and python SQLite3 database with html templating*
+The application uses Flask framework and python SQLite3 database with HTML templating*
 
 #  Project Description
 
