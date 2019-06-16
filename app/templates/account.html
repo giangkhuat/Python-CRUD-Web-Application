@@ -42,7 +42,7 @@
          <td>{{donor['donation_amount']}}</td>
          <td>{{donor['donate_event']}}</td>
          <td align="center"><a href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
-         <td align="center"><button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
+         <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
       </tr>
       {% endfor %}
    </table>
@@ -52,17 +52,20 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="deleteModalLabel">CAUTION ! </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        ...
+        You are about to permanently delete a donor's information !
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+         <!-- When user click Delete button, deleting the donor -->
+         <form action="{{ url_for('delete_donor', donor_id=donor.id) }}" method="POST">
+            <input class="btn" type="submit" value="Delete">
+         </form>
       </div>
     </div>
   </div>

@@ -117,3 +117,6 @@ def update_donor(donor_id):
         form.contact_email.data = donor.contact_email
     return render_template('insert_donor.html', title='Update Donor',
                            form=form, legend='Update Donor')
+
+
+@app.route("/account/")
