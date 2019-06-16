@@ -10,10 +10,9 @@ The application uses Flask framework and python SQLite3 database with HTML templ
 
 #  Project Description
 
-The project's goal is to create a database that allows non-profit organizations manage their donors' informationa and communicate with them
-more effectively.
+The project's goal is to create a database that allows non-profit organizations manage their donors' information and communicate with them more effectively.
 
-The database will contain donors' information such as name, contact, home address, donation amount, donation date, donating category and special notes.
+The database will contain donors' information such as name, contact email, donation amount, and donation event
 
 The program will allow users to:
  * Search for a donor's name
@@ -38,4 +37,4 @@ The program will allow users to:
 
 Link : [https://github.com/CoreyMSchafer/code_snippets]
 
-* Colt Steele's Web Developer Tutorial on Academy
+* Colt Steele's Web Developer Tutorial on Udemy
