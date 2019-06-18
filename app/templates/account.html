@@ -25,14 +25,9 @@
          <th>Full Name</th>
          <th>Contact Email</th>
          <th>Donation Amount</th>
-         <th> Donate Event</th>
+         <th>Donate Event</th>
          <th>Edit</th>
          <th>Delete</th>
-         <!--
-            <th>EDIT</th>
-         <th>DELETE</th>
-         </tr>
-         -->
       </thead>
 
       {% for donor in donors %}
@@ -41,35 +36,15 @@
          <td>{{donor["contact_email"]}}</td>
          <td>{{donor['donation_amount']}}</td>
          <td>{{donor['donate_event']}}</td>
-         <td align="center"><a href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:24px"></i></a></td>
-         <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
+          <!-- Allowing user to update -->
+         <td align="center"><a href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
+         <!-- Modal is a bootstrap allowing user to confirm they want to delete
+          -- <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
+          -->
+          <td align="center"><a href = "{{ url_for('delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
       </tr>
       {% endfor %}
    </table>
-   <!-- Modal -->
-   <!-- Taken from https://getbootstrap.com/docs/4.0/components/modal/#live-demo -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteModalLabel">CAUTION ! </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        You are about to permanently delete a donor's information !
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-         <!-- When user click Delete button, deleting the donor -->
-         <form action="{{ url_for('delete_donor', donor_id=donor.id) }}" method="POST">
-            <input class="btn" type="submit" value="Delete">
-         </form>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 
 {% endblock content %}

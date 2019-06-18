@@ -50,6 +50,7 @@ def login():
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
+
 @app.route("/logout")
 def logout():
     logout_user()
@@ -88,7 +89,7 @@ def insert_donor():
 def return_donor(donor_id):
     # get_or_404 is a function returning donor's id if exists, else 404 error
     donor = Donor.query.get_or_404(donor_id)
-    return render_template('donor.html', title=donor.name, donor=donor )
+    return render_template('donor.html', title=donor.name, donor=donor)
 
 
 # function to edit the donor's information
@@ -119,4 +120,17 @@ def update_donor(donor_id):
                            form=form, legend='Update Donor')
 
 
-@app.route("/account/")
+@app.route("/account/<int:donor_id>/delete", methods=['GET', 'POST'])
+@login_required
+def delete(donor_id):
+    donor = Donor.query.get_or_404(donor_id)
+    # verify that user is current user
+    if donor.admin != current_user:
+        flash('Wrong admin', 'success')
+        abort(403)
+    db.session.delete(donor)
+    db.session.commit()
+    flash('One donor was deleted!', 'success')
+    # return redirect(url_for('account'))
+    donors = Donor.query.all()
+    return render_template('account.html', title="Account", donors=donors)
