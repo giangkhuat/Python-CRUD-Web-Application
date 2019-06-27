@@ -16,13 +16,20 @@ The database will contain donors' information such as name, contact email, donat
 
 The program will allow users to:
  * Search for a donor's name
- * Filer donors by donating category
- * Change a donor's contact and home address
- * Update donation amount and donation date.
+ * Filer donors 
+ * Update donor's information
  * Print all donors sorted by name
  * Add or delete a donor's information
  
-# Running details (for Windows users)
+# How to use: 
+
+# Prerequisites:
+
+* Python
+* Git
+* Pip 
+ 
+# Setting up the project:
 
 * Pycharm version: 
 * System dependencies
@@ -30,6 +37,8 @@ The program will allow users to:
 * Database creation
 * Database initialization
 * Deployment instructions
+
+# Running the project:
 
 # References
 
