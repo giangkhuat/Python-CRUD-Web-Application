@@ -29,16 +29,19 @@ The program will allow users to:
 * Git
 * Pip 
  
-# Setting up the project:
+# Setting up the project (Window):
 
-* Pycharm version: 
-* System dependencies
-* Configuration
-* Database creation
-* Database initialization
-* Deployment instructions
+1. Check prerequisites:
 
-# Running the project:
+* Install Python if not already installed
+* Install Git if not already installed
+* (Windows) Install pip package manager
+
+If you are on a Mac, install the prerequisites through your package manager.
+
+2. Clone the repository to your computer
+
+> https://github.com/giangkhuat/CRUD-Web-Application.git
 
 # References
 
