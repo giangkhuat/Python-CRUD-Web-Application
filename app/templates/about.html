@@ -13,6 +13,14 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:400,600" rel="stylesheet">
     <style type="text/css">
 		/* center everything */
+		#center-content{
+		  margin-left: auto;
+		  margin-right: auto;
+		  width: 50%;
+		  height: 50%;
+		  text-align: center;
+          font-size: 14px;
+		}
 		#button
 		{
 			/* color: white; */
@@ -29,8 +37,8 @@
 		{
 			font-family: 'Noto Serif SC', serif;
 			font: bold;
-			background: url(https://images.unsplash.com/photo-1493219686142-5a8641badc78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80);
-			color: black;
+			background: url(https://images.unsplash.com/photo-1496867557017-559adb93b339?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80);
+			color: rgb(40,40,40);
 			/* resize the image */
 			background-size: cover;
 			/* change position */
@@ -58,7 +66,7 @@
 <header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-4" href="/">CARE</a>
+            <a class="navbar-brand mr-4" href="/">CareDB</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,32 +90,40 @@
         </div>
     </nav>
 
-    -->
 </header>
 <main role="main" class="container">
+    <div id="center-content" class="center">
+        <h3>
+            About CareDB
+        </h3>
+        <hr>
+        <p>
+
+CareDB is an online database that allows non-profit organizations to manage their donors' information and communicate with them more effectively.
+        </p>
+        <h3> About the Creator</h3>
+        <p>
+            <hr>
+Giang is an undergraduate student studying in the US. She aspires to use her skills and knowledge to make people’s lives better. During her time working as a grant writer for her community’s Daycare Center, she was inspired by her boss, who always cared about the children in the center and prioritized their well-being.
+        </p>
+    <p>
+Recognizing that the center needed a more efficient way to manage its donors’ information, Giang created CareDB to make it easier for the center to raise fund in future. She chose CareDB name because Giang believes that you can really change the world if you care enough.
+
+        </p>
+    </div>
     <div class="row">
         <div class="col-md-12">
-            <div style="position: relative">
-                <h3 style="position: fixed; top: 150px; left: 180px; width:100%; text-align: center"> About CARE
+            <div class="center">
+                <h3 style="">
                 </h3>
             </div>
 
-            <!--
-          {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
-          -->
+
             {% block content %}
 
             {% endblock %}
         </div>
-
+    </div>
 </main>
 
 
