@@ -1,4 +1,4 @@
-# CRUD-Web-Application
+# CRUD Python Application
 A create, read, update and delete online database
 
 Author:  Giang Khuat
@@ -47,7 +47,7 @@ After this, navigate to the project directory in your command prompt or Git Bash
 
 3. Install virtual environments
 
-'   pip install virtualenv                                                                                                `
+`   pip install virtualenv                                                                                                `
 
 4. Load the Flask virtual environment
 
