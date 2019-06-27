@@ -41,31 +41,31 @@ If you are on a Mac, install the prerequisites through your package manager.
 
 2. Clone the repository to your computer
 
-`https://github.com/giangkhuat/CRUD-Web-Application.git`
+`   https://github.com/giangkhuat/CRUD-Web-Application.git                                                                `
 
 After this, navigate to the project directory in your command prompt or Git Bash
 
 3. Install virtual environments
 
-'pip install virtualenv'
+'   pip install virtualenv                                                                                                `
 
 4. Load the Flask virtual environment
 
-'virtuanenv flask'
+`   virtuanenv flask                                                                                                       `
 
 5. Activate Flask environment
 
-'flask/bin/activate.bat'
+`   flask/bin/activate.bat                                                                                                 `
 
 6. Install required packages
 
-'pip install -r requirements.txt'
+`   pip install -r requirements.txt                                                                                           `
 
 # Running the project:
  
  Run this command:
  
-'python main.py'
+`   python main.py`
 
 # References
 
