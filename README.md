@@ -41,7 +41,7 @@ If you are on a Mac, install the prerequisites through your package manager.
 
 2. Clone the repository to your computer
 
-'https://github.com/giangkhuat/CRUD-Web-Application.git'
+`https://github.com/giangkhuat/CRUD-Web-Application.git`
 
 After this, navigate to the project directory in your command prompt or Git Bash
 
