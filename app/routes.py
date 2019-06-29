@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect, request, abort
-from app.forms import RegistrationForm, LoginForm, InsertForm
+from app.forms import RegistrationForm, LoginForm, InsertForm, UpdateAccountForm
 from app import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User, Donor
@@ -24,8 +24,11 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RegistrationForm()
+    # Check if form is valid
     if form.validate_on_submit():
+        # Hash password
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        # Actually create an instance of user and add them to database
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
@@ -42,6 +45,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
+            # import login_user function
             login_user(user, remember=form.remember.data)
             # check if next page exists, get reurns none if next does not exist
             next_page = request.args.get('next')
@@ -60,8 +64,16 @@ def logout():
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+   # image_file = url_for('static', filename='profile-pics/' + current_user.image_file)
+    form = UpdateAccountForm()
     donors = Donor.query.all()
-    return render_template('account.html', title='Account', donors=donors)
+    return render_template('account1.html', title='Account', donors=donors, form=form)
+
+@app.route("/account/update", methods=['GET', 'POST'])
+@login_required
+def update_account():
+    form = UpdateAccountForm()
+    return render_template('account1.html', title='Account', form=form)
 
 
 # Since we posting data back into this route, the route
@@ -133,4 +145,4 @@ def delete(donor_id):
     flash('One donor was deleted!', 'success')
     # return redirect(url_for('account'))
     donors = Donor.query.all()
-    return render_template('account.html', title="Account", donors=donors)
+    return render_template('account1.html', title="Account", donors=donors)
