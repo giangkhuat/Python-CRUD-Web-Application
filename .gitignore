@@ -1,0 +1,5 @@
+## Python LITG
+__pycache__/
+.idea
+venv/
+app/__pycache__/
