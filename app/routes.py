@@ -60,31 +60,20 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-# Personal Account Page
 
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
+   # image_file = url_for('static', filename='profile-pics/' + current_user.image_file)
     form = UpdateAccountForm()
-    if form.validate_on_submit():
-        current_user.username = form.username.data
-        current_user.email = form.email.data
-        db.session.commit()
-        flash('Your account has been updated!', 'success')
-        return redirect(url_for('account'))
-    elif request.method == 'GET':
-        form.username.data = current_user.username
-        form.email.data = current_user.username
-    return render_template('account1.html', title='Account', form=form)
+    donors = Donor.query.all()
+    return render_template('account1.html', title='Account', donors=donors, form=form)
 
-# View All Donors
-
-@app.route("/account/viewall", methods=['GET', 'POST'])
+@app.route("/account/update", methods=['GET', 'POST'])
 @login_required
-def view_all():
-    # donors = Donor.query.all()
-    donors = Donor.query.filter_by(admin_id=current_user.id)
-    return render_template('viewall.html', title='Donors', donors=donors)
+def update_account():
+    form = UpdateAccountForm()
+    return render_template('account1.html', title='Account', form=form)
 
 
 # Since we posting data back into this route, the route
@@ -155,5 +144,5 @@ def delete(donor_id):
     db.session.commit()
     flash('One donor was deleted!', 'success')
     # return redirect(url_for('account'))
-    donors = Donor.query.filter_by(admin_id=current_user.id)
-    return render_template('viewall.html', title="Account", donors=donors)
+    donors = Donor.query.all()
+    return render_template('account1.html', title="Account", donors=donors)

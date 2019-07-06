@@ -16,50 +16,39 @@
          Add Donor
       </a>
    </button>
-
     <button class="btn btn-info" style="font-face: 'Comic Sans MS'; font-size: larger; color: white; background-color: #e6e6e6" >
-      <a id="button" href="{{ url_for('view_all') }}">
-         View All
+      <a id="button" href="{{ url_for('update_account') }}">
+         Update Account
       </a>
    </button>
 </div>
 <div class="content-section">
-        <form method="POST" action="" enctype="multipart/form-data">
-            {{ form.hidden_tag() }}
-            <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Account Info</legend>
-                <div class="form-group">
-                    {{ form.username.label(class="form-control-label") }}
+   <table class = 'table table-hover' style = 'margin-left: 30px; margin-right: 100px; width: 90%;'>
+      <thead>
+      <tr>
+         <th>Full Name</th>
+         <th>Contact Email</th>
+         <th>Donation Amount</th>
+         <th>Donate Event</th>
+         <th>Edit</th>
+         <th>Delete</th>
+      </thead>
 
-                    {% if form.username.errors %}
-                        {{ form.username(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.username.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.username(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-                <div class="form-group">
-                    {{ form.email.label(class="form-control-label") }}
-                    {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid") }}
-                        <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
-                                <span>{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                    {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
-                    {% endif %}
-                </div>
-            </fieldset>
-            <div class="form-group">
-                {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-        </form>
-    </div>
+      {% for donor in donors %}
+      <tr>
+         <td>{{donor["name"]}}</td>
+         <td>{{donor["contact_email"]}}</td>
+         <td>{{donor['donation_amount']}}</td>
+         <td>{{donor['donate_event']}}</td>
+          <!-- Allowing user to update -->
+         <td align="center"><a href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
+         <!-- Modal is a bootstrap allowing user to confirm they want to delete
+          -- <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
+          -->
+          <td align="center"><a href = "{{ url_for('delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
+      </tr>
+      {% endfor %}
+   </table>
+</div>
 
 {% endblock content %}
