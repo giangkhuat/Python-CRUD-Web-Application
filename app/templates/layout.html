@@ -12,20 +12,43 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:400,600" rel="stylesheet">
     <style type="text/css">
-    body
-		{
-			font-family: 'Noto Serif SC', serif;
-			font: bold;
-			background: url(https://images.unsplash.com/photo-1526642738196-ad8ed2d50805?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80);
-			color: rgb(40,40,40);
-			/* resize the image */
-			background-size: cover;
-			/* change position */
-			/* background-position: center; */
-			background-repeat: no-repeat;
-		}
-	</style>
+        body
+            {
+                font-family: 'Noto Serif SC', serif;
+                font: bold;
+                background: url(https://images.unsplash.com/photo-1526642738196-ad8ed2d50805?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=966&q=80);
+                color: rgb(40,40,40);
+                /* resize the image */
+                background-size: cover;
+                /* change position */
+                /* background-position: center; */
+                background-repeat: no-repeat;
+            }
 
+    a {
+        color: #0060B6;
+        text-decoration: none;
+    }
+
+    a:hover
+    {
+         color: white;
+         text-decoration:none;
+         cursor:pointer;
+    }
+
+    .btn {
+      font-face: 'Comic Sans MS';
+      font-size: larger;
+      color: white;
+      background-color: #e6e6e6
+    }
+
+    #linkName:hover {
+      color: r#8b8bff;
+    }
+
+    </style>
     {% if title %}
     <title>CRUD Flask App - {{ title }}</title>
     {% else %}
@@ -33,7 +56,7 @@
     {% endif %}
 </head>
 <body>
-    <header class="site-header">
+<header class="site-header">
     <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
             <a class="navbar-brand mr-4" href="/">CareDB</a>
@@ -65,31 +88,31 @@
 <main role="main" class="container">
     <div class="row">
         <div class="col-md-8">
-          {% with messages = get_flashed_messages(with_categories=true) %}
+            {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-              {% for category, message in messages %}
-                <div class="alert alert-{{ category }}">
-                  {{ message }}
-                </div>
-              {% endfor %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
             {% endif %}
-          {% endwith %}
-          {% block content %} {% endblock %}
+            {% endwith %}
+            {% block content %} {% endblock %}
         </div>
         <div class="col-md-4">
-          <div class="content-section">
-            <h3>Quick Recap</h3>
-            <p class='text-muted'>Used for later
-              <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Number of tables</li>
-                <li class="list-group-item list-group-item-light">Total number of donors</li>
-                <li class="list-group-item list-group-item-light">Calendars</li>
-                <li class="list-group-item list-group-item-light">etc</li>
-              </ul>
-            </p>
-          </div>
+            <div class="content-section">
+                <h3>Quick Recap</h3>
+                <p class='text-muted'>Used for later
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">Number of tables</li>
+                    <li class="list-group-item list-group-item-light">Total number of donors</li>
+                    <li class="list-group-item list-group-item-light">Calendars</li>
+                    <li class="list-group-item list-group-item-light">etc</li>
+                </ul>
+                </p>
+            </div>
         </div>
-      </div>
+    </div>
 </main>
 
 

@@ -36,16 +36,16 @@
 
       {% for donor in donors %}
       <tr>
-         <td>{{donor["name"]}}</td>
+         <td> <a id="linkName" href="{{ url_for('return_donor', donor_id=donor.id) }}">{{donor["name"]}} </a></td>
          <td>{{donor["contact_email"]}}</td>
          <td>{{donor['donation_amount']}}</td>
          <td>{{donor['donate_event']}}</td>
           <!-- Allowing user to update -->
-         <td align="center"><a href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
+         <td align="center"><a id="linkName" href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
          <!-- Modal is a bootstrap allowing user to confirm they want to delete
           -- <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
           -->
-          <td align="center"><a href = "{{ url_for('delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
+          <td align="center"><a id="linkName" href = "{{ url_for('delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
       </tr>
       {% endfor %}
    </table>

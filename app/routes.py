@@ -72,8 +72,8 @@ def account():
 @app.route("/account/viewall", methods=['GET', 'POST'])
 @login_required
 def viewall():
-    donor_id = current_user.id
-    donors = Donor.query.filter_by(admin_id=donor_id)
+    user_id = current_user.id
+    donors = Donor.query.filter_by(admin_id=user_id)
     return render_template('viewall.html', title='Account', donors=donors)
 
 @app.route("/account/update", methods=['GET', 'POST'])
@@ -149,7 +149,6 @@ def delete(donor_id):
         abort(403)
     db.session.delete(donor)
     db.session.commit()
-    flash('One donor was deleted!', 'success')
-    # return redirect(url_for('account'))
-    donors = Donor.query.all()
-    return render_template('account1.html', title="Account", donors=donors)
+    flash('One donor information was deleted!', 'success')
+    return redirect(url_for('account'))
+    return render_template('account1.html', title="Account")
