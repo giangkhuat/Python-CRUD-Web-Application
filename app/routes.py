@@ -69,6 +69,13 @@ def account():
     donors = Donor.query.all()
     return render_template('account1.html', title='Account', donors=donors, form=form)
 
+@app.route("/account/viewall", methods=['GET', 'POST'])
+@login_required
+def viewall():
+    donor_id = current_user.id
+    donors = Donor.query.filter_by(admin_id=donor_id)
+    return render_template('viewall.html', title='Account', donors=donors)
+
 @app.route("/account/update", methods=['GET', 'POST'])
 @login_required
 def update_account():
