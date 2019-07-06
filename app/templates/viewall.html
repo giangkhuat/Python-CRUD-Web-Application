@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-section">
+   <div class="media">
+      <img class="rounded-circle account-img" src="{{ url_for('static', filename='profile-pics/kmLYx3lW.jpg') }}">
+      <div class="media-body">
+         <h3 class="account-heading">
+            {{ current_user.username }}
+         </h3>
+         <p class="text-secondary">{{ current_user.email }}</p>
+      </div>
+
+   </div>
+   <button class="btn btn-info" style="font-face: 'Comic Sans MS'; font-size: larger; color: white; background-color: #e6e6e6" >
+      <a id="button" href="{{ url_for('insert_donor') }}">
+         Add Donor
+      </a>
+   </button>
+
+    <button class="btn btn-info" style="font-face: 'Comic Sans MS'; font-size: larger; color: white; background-color: #e6e6e6" >
+      <a id="button" href="{{ url_for('view_all') }}">
+         View All
+      </a>
+   </button>
+</div>
+<div class="content-section">
+   <table class = 'table table-hover' style = 'margin-left: 30px; margin-right: 100px; width: 90%;'>
+      <thead>
+      <tr>
+         <th>Full Name</th>
+         <th>Contact Email</th>
+         <th>Donation Amount</th>
+         <th>Donate Event</th>
+         <th>Edit</th>
+         <th>Delete</th>
+      </thead>
+
+      {% for donor in donors %}
+      <tr>
+         <td>{{donor["name"]}}</td>
+         <td>{{donor["contact_email"]}}</td>
+         <td>{{donor['donation_amount']}}</td>
+         <td>{{donor['donate_event']}}</td>
+          <!-- Allowing user to update -->
+         <td align="center"><a href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
+         <!-- Modal is a bootstrap allowing user to confirm they want to delete
+          -- <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
+          -->
+          <td align="center"><a href = "{{ url_for('delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
+      </tr>
+      {% endfor %}
+   </table>
+</div>
+{% endblock content %}

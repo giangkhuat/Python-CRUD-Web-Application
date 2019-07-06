@@ -45,6 +45,7 @@ class InsertForm(FlaskForm):
 	donate_event = StringField('Donate Event')
 	submit = SubmitField('Insert')
 
+
 class UpdateAccountForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])
 	email = StringField('Email', validators=[DataRequired(), Email()])
