@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect, request, abort
-from app.forms import RegistrationForm, LoginForm, InsertForm, UpdateAccountForm
+from app.forms import RegistrationForm, LoginForm, InsertForm, UpdateAccountForm, ResetPasswordForm, RequestResetForm
 from app import app, db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from app.models import User, Donor
@@ -159,3 +159,4 @@ def delete(donor_id):
     flash('One donor information was deleted!', 'success')
     return redirect(url_for('account'))
     return render_template('account1.html', title="Account")
+
