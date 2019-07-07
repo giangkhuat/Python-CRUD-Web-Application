@@ -66,14 +66,17 @@ def logout():
 def account():
    # image_file = url_for('static', filename='profile-pics/' + current_user.image_file)
     form = UpdateAccountForm()
-    donors = Donor.query.all()
-    return render_template('account1.html', title='Account', donors=donors, form=form)
+    return render_template('account1.html', title='Account', form=form)
 
 @app.route("/account/viewall", methods=['GET', 'POST'])
 @login_required
 def viewall():
     user_id = current_user.id
-    donors = Donor.query.filter_by(admin_id=user_id)
+    page = request.args.get('page', 1, type=int)
+    # Query donors of current user (filter_by) and order alphabetically
+    # Number them into pages
+    donors = Donor.query.filter_by(admin_id=user_id).order_by(Donor.name).paginate(page=page, per_page=3)
+    # donors = Donor.query.filter(db.users.id == user_id)
     return render_template('viewall.html', title='Account', donors=donors)
 
 @app.route("/account/update", methods=['GET', 'POST'])
@@ -107,6 +110,10 @@ def insert_donor():
 @app.route("/account/<int:donor_id>")
 def return_donor(donor_id):
     # get_or_404 is a function returning donor's id if exists, else 404 error
+    # Consider show all donations the donor made
+    # page = request.args.get('page', 1, type=int)
+    # donor = Donor.query.filter_by(id=donor_id).first_or_404()
+    # [donation_history]= Donation_history.query.filter_by(donor=donor).order_by(Donor.amount.desc()).paginate(page=page, per_page=5)
     donor = Donor.query.get_or_404(donor_id)
     return render_template('donor.html', title=donor.name, donor=donor)
 

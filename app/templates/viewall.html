@@ -34,7 +34,7 @@
          <th>Delete</th>
       </thead>
 
-      {% for donor in donors %}
+      {% for donor in donors.items %}
       <tr>
          <td> <a id="linkName" href="{{ url_for('return_donor', donor_id=donor.id) }}">{{donor["name"]}} </a></td>
          <td>{{donor["contact_email"]}}</td>
@@ -49,6 +49,17 @@
       </tr>
       {% endfor %}
    </table>
+    {% for page_num in donors.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if donors.page == page_num %}
+          <a style="color: blue; font-size: 14px" class="btn btn-info mb-4" href="{{ url_for('viewall', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+          <a style ="color: blue; font-size: 14px" class="btn btn-outline-info mb-4" href="{{ url_for('viewall', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+        ...
+      {% endif %}
+    {% endfor %}
 </div>
 
 {% endblock content %}
