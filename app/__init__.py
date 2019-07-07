@@ -19,11 +19,11 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 # Setting up email port and server so the application knows where to send
-app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
-app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
+app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 
 # Now we can initialize extension
 mail = Mail(app)
