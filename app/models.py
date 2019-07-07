@@ -23,6 +23,7 @@ class User(db.Model, UserMixin):
         return s.dumps({'user_id': self.id}).decode('utf-8')
 
     @staticmethod
+    # If token is verified, function return user with user_id
     def verify_reset_token(token):
         s = Serializer(app.config['SECRET_KEY'])
         # try loading the token

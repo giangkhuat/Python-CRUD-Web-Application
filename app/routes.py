@@ -40,7 +40,7 @@ def register():
 @app.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('account'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -160,3 +160,42 @@ def delete(donor_id):
     return redirect(url_for('account'))
     return render_template('account1.html', title="Account")
 
+
+def send_reset_email(user):
+    pass
+
+
+# Link to request reset password
+
+@app.route("/reset_password", methods=['GET', 'POST'])
+def reset_request():
+    # check if user is logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('account'))
+    # create form
+    form = RequestResetForm()
+    # if form is submitted, get the user with that email
+    # Send them an email to reset password
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent to you to reset your password', 'info')
+        return redirect(url_for('login'))
+    return render_template('reset_request.html', title='Reset Request', form=form)
+
+# Route to reset password
+
+@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+    # check if user is logged in
+    if current_user.is_authenticated:
+        return redirect(url_for('account'))
+    user = User.verify_reset_token(token)
+    # if function does not return an user, flash an error message
+    # redirect to reset request again
+    if user is None:
+        flash('Invalid or expired token', 'warning')
+        return redirect(url_for('reset_request'))
+    # Else if user is valid, present form to reset password
+    form = ResetPasswordForm()
+    return render_template('reset_password.html', title='REset password', form=form)
