@@ -61,13 +61,24 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
+# Route user account home page, allowing user to update account right at home page
 
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
    # image_file = url_for('static', filename='profile-pics/' + current_user.image_file)
-    form = UpdateAccountForm()
-    return render_template('account1.html', title='Account', form=form)
+   form = UpdateAccountForm()
+   if form.validate_on_submit():
+       current_user.username = form.username.data
+       current_user.email = form.email.data
+       db.session.commit()
+       flash('Your account has been updated!', 'success')
+       return redirect(url_for('account'))
+   elif request.method == 'GET':
+       form.username.data = current_user.username
+       form.email.data = current_user.email
+   return render_template('account1.html', title='Account', form=form)
+
 
 @app.route("/account/viewall", methods=['GET', 'POST'])
 @login_required
@@ -84,6 +95,15 @@ def viewall():
 @login_required
 def update_account():
     form = UpdateAccountForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username
+        form.email.data = current_user.email
     return render_template('account1.html', title='Account', form=form)
 
 
