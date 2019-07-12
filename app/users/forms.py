@@ -1,11 +1,8 @@
 from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, NumberRange
 from app.models import User
-# Syntax for subclass
-# class DerivedClassName(BaseClassName):
-#     pass
 
 
 class RegistrationForm(FlaskForm):
@@ -36,14 +33,6 @@ class LoginForm(FlaskForm):
 	submit = SubmitField('Log in')
 	remember = BooleanField('Remember me')
 
-
-class InsertForm(FlaskForm):
-	# every insert action has to include donor's name
-	name = StringField('Name', validators=[DataRequired()])
-	contact_email = StringField('Contact Email', validators=[DataRequired(), Email()])
-	donation_amount = IntegerField('Donation Amount ($)', validators=[DataRequired(), NumberRange(min=0)])
-	donate_event = StringField('Donate Event')
-	submit = SubmitField('Insert')
 
 class UpdateAccountForm(FlaskForm):
 	username = StringField('Username', validators=[DataRequired(), Length(min=2, max=20)])

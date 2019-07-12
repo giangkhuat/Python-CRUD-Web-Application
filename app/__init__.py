@@ -28,4 +28,12 @@ app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 # Now we can initialize extension
 mail = Mail(app)
 
-from app import routes
+# import users, an instance of Blueprint class
+from app.users.routes import users
+from app.donors.routes import donors
+from app.main.routes import main
+# register that blueprint
+
+app.register_blueprint(users)
+app.register_blueprint(donors)
+app.register_blueprint(main)
