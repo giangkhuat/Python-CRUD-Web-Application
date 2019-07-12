@@ -126,7 +126,7 @@ def reset_token(token):
     # redirect to reset request again
     if user is None:
         flash('Invalid or expired token', 'warning')
-        return redirect(url_for('users.eset_request'))
+        return redirect(url_for('users.reset_request'))
     # Else if user is valid, present form to reset password
     form = ResetPasswordForm()
     # Handle if form is submitted

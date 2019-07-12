@@ -12,12 +12,12 @@
 
    </div>
    <button class="btn btn-info" style="font-face: 'Comic Sans MS'; font-size: larger; color: white; background-color: #e6e6e6" >
-      <a id="button" href="{{ url_for('insert_donor') }}">
+      <a id="button" href="{{ url_for('donors.insert_donor') }}">
          Add Donor
       </a>
    </button>
     <button class="btn btn-info" style="font-face: 'Comic Sans MS'; font-size: larger; color: white; background-color: #e6e6e6" >
-      <a id="button" href="{{ url_for('update_account') }}">
+      <a id="button" href="{{ url_for('users.update_account') }}">
          Update Account
       </a>
    </button>
@@ -36,25 +36,25 @@
 
       {% for donor in donors.items %}
       <tr>
-         <td> <a id="linkName" href="{{ url_for('return_donor', donor_id=donor.id) }}">{{donor["name"]}} </a></td>
+         <td> <a id="linkName" href="{{ url_for('donors.return_donor', donor_id=donor.id) }}">{{donor["name"]}} </a></td>
          <td>{{donor["contact_email"]}}</td>
          <td>{{donor['donation_amount']}}</td>
          <td>{{donor['donate_event']}}</td>
           <!-- Allowing user to update -->
-         <td align="center"><a id="linkName" href = "{{ url_for('update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
+         <td align="center"><a id="linkName" href = "{{ url_for('donors.update_donor', donor_id=donor['id']) }}"><i class="fa fa-edit" style="font-size:18px"></i></a></td>
          <!-- Modal is a bootstrap allowing user to confirm they want to delete
           -- <td align="center"><button type="button" class="btn btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button></td>
           -->
-          <td align="center"><a id="linkName" href = "{{ url_for('delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
+          <td align="center"><a id="linkName" href = "{{ url_for('donors.delete', donor_id=donor['id']) }}"><i class="fa fa-trash-alt" style="font-size:18px"></i></a></td>
       </tr>
       {% endfor %}
    </table>
     {% for page_num in donors.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
         {% if donors.page == page_num %}
-          <a style="color: blue; font-size: 14px" class="btn btn-info mb-4" href="{{ url_for('viewall', page=page_num) }}">{{ page_num }}</a>
+          <a style="color: blue; font-size: 14px" class="btn btn-info mb-4" href="{{ url_for('users.viewall', page=page_num) }}">{{ page_num }}</a>
         {% else %}
-          <a style ="color: blue; font-size: 14px" class="btn btn-outline-info mb-4" href="{{ url_for('viewall', page=page_num) }}">{{ page_num }}</a>
+          <a style ="color: blue; font-size: 14px" class="btn btn-outline-info mb-4" href="{{ url_for('users.viewall', page=page_num) }}">{{ page_num }}</a>
         {% endif %}
       {% else %}
         ...

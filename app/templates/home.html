@@ -67,18 +67,18 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('about') }}">About</a></li>
+        <li><a href="{{ url_for('main.home') }}">Home</a></li>
+        <li><a href="{{ url_for('main,about') }}">About</a></li>
         <li><a href="#">Contact</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
           {% if current_user.is_authenticated %}
-          <li> <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a> </li>
-          <li> <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout </a> </li>
+          <li> <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a> </li>
+          <li> <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout </a> </li>
           {% else %}
-          <li><a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a> </li>
-          <li><a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a> </li>
+          <li><a class="nav-item nav-link" href="{{ url_for('users.register') }}">Register</a> </li>
+          <li><a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a> </li>
           {% endif %}
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown<span class="caret"></span></a>
@@ -106,7 +106,7 @@
 				<!-- the btn is just a boostrap default version we can search on getbootstrap -->
 				<button class="btn btn-default btn-lg" >
 					<!-- <span id="button" > -->
-                        <a id="button" href="{{ url_for('register') }}">
+                        <a id="button" href="{{ url_for('users.register') }}">
                             Register
                         </a>
                    <!--  </span> -->
