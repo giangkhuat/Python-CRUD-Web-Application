@@ -13,7 +13,7 @@ bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 # require user to log in access certain sites
 # pass in function name of login route
-login_manager.login_view = 'login'
+login_manager.login_view = 'users.login'
 
 # beautify flash message
 login_manager.login_message_category = 'info'
