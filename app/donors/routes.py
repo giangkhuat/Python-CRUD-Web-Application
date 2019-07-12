@@ -21,7 +21,7 @@ def insert_donor():
         db.session.add(donor)
         db.session.commit()
         flash(' A new person data was added', 'success')
-        return redirect(url_for('donors.account'))
+        return redirect(url_for('users.account'))
     return render_template('insert_donor.html', form=form, title=' Add Donor', legend='Add Donor')
 
 
@@ -77,5 +77,5 @@ def delete(donor_id):
     db.session.delete(donor)
     db.session.commit()
     flash('One donor information was deleted!', 'success')
-    return redirect(url_for('donors.account'))
+    return redirect(url_for('users.account'))
 
