@@ -1,5 +1,6 @@
-from app import db, login_manager, app
+from app import db, login_manager
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+from flask import current_app
 from flask_login import UserMixin
 
 
@@ -17,7 +18,7 @@ class User(db.Model, UserMixin):
     donors = db.relationship('Donor', backref='admin', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
-        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
         # pass in user ID to serialize an object (convert to a byte stream)
         # return the token
         return s.dumps({'user_id': self.id}).decode('utf-8')
@@ -25,7 +26,7 @@ class User(db.Model, UserMixin):
     @staticmethod
     # If token is verified, function return user with user_id
     def verify_reset_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
+        s = Serializer(current_app.config['SECRET_KEY'])
         # try loading the token
         try:
             user_id = s.loads(token)['user_id']
