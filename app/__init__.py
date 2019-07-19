@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
 from app.config import Config
+from flask_migrate import Migrate
 
 
 # We don't move extensions inside function create_app()
@@ -20,6 +21,7 @@ login_manager.login_view = 'users.login'
 # beautify flash message
 login_manager.login_message_category = 'info'
 mail = Mail()
+migrate = Migrate()
 
 
 def create_app(config_class=Config):
@@ -31,6 +33,7 @@ def create_app(config_class=Config):
 	bcrypt.init_app(app)
 	login_manager.init_app(app)
 	mail.init_app(app)
+	migrate.init_app(app, db)
 
 	# import users, an instance of Blueprint class
 	from app.users.routes import users
