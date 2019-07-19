@@ -36,10 +36,12 @@ def create_app(config_class=Config):
 	from app.users.routes import users
 	from app.donors.routes import donors
 	from app.main.routes import main
+	from app.errors.handlers import errors
 	# register that blueprint
 	app.register_blueprint(users)
 	app.register_blueprint(donors)
 	app.register_blueprint(main)
+	app.register_blueprint(errors)
 
 	return app
 
