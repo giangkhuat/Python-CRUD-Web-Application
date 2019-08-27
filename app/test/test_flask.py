@@ -1,9 +1,10 @@
 from app import create_app, db
-from app.test_basic import TestConfig
+from test.test_basic import TestConfig
 from app.models import User
 import pytest
 
 
+# Initialzie application, run before every test
 @pytest.fixture(scope="module")
 def test_client():
 	flask_app = create_app(TestConfig)
@@ -40,7 +41,24 @@ def init_database():
 #def login(test_client, username, password):
 #	return test_client.post('/login', data=dict(username=username, password=password), follow_redirects=True)
 
+# Create new user
+@pytest.fixture(scope='module')
+def new_user():
+	user = User(username='bumble',email='bumbleblee@gmail.com', password='Flask')
+	return user
 
+# Test New User
+def test_new_user(new_user):
+    """
+    GIVEN a User model
+    WHEN a new User is created
+    THEN check the email, hashed_password, authenticated,
+    """
+    assert new_user.email == 'bumbleblee@gmail.com'
+    assert new_user.hashed_password != 'Flask'
+    assert not new_user.authenticated
+
+# Test Main Page load correctly
 def test_main_page(test_client):
 		response = test_client.get('/', follow_redirects=True)
 		assert response.status_code == 200
