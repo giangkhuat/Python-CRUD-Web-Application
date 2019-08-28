@@ -1,23 +1,31 @@
-from app.models import User
+from ..models import User
+from .fixture import test_client
 import pytest
+from app import bcrypt
 
 
 # Create new user
 @pytest.fixture(scope='module')
 def new_user():
-	user = User(username='bumble',email='bumbleblee@gmail.com', password='Flask')
+	user = User(username='bumble', email='bumbleblee@gmail.com', password='flask')
 	return user
 
+
 # Test New User
-def test_new_user(new_user):
+def test_register_user(test_client, new_user):
     """
     GIVEN a User model
     WHEN a new User is created
     THEN check the email, hashed_password, authenticated,
     """
+    response = test_client.post('/register', data=dict(username=new_user.username, email=new_user.email, password=new_user.password),follow_redirects=True)
     assert new_user.email == 'bumbleblee@gmail.com'
-    assert new_user.hashed_password != 'Flask'
-    assert not new_user.authenticated
+    assert new_user.username == 'bumble'
+    assert new_user.password == 'flask'
+    assert response.status_code == 200
+    #assert 'Your account has been created! You are now able to log in' in response.data
+    assert b'Log In With Admin Account' in response.data
+
 
 
 def test_incorrect_login(test_client):
