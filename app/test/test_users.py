@@ -1,5 +1,6 @@
 from ..models import User
 from .fixture import test_client
+from flask import request
 import pytest
 from app import bcrypt
 
@@ -22,9 +23,20 @@ def test_register_user(test_client, new_user):
     assert new_user.email == 'bumbleblee@gmail.com'
     assert new_user.username == 'bumble'
     assert new_user.password == 'flask'
+    user = User.query.filter_by(email='bumblebee@gmail.com').first()
+    assert user.username == '<username - bumble>'
     assert response.status_code == 200
-    #assert 'Your account has been created! You are now able to log in' in response.data
+    #assert b'Your account has been created! You are now able to log in' in response.data
     assert b'Log In With Admin Account' in response.data
+
+def test_incorrect_register(test_client):
+	# If wrong email
+	response = test_client.post('register/', data=dict(
+		username='chicken', email='chicken',
+		password='python', confirm='python'
+	), follow_redirects=True)
+	assert b'Invalid email address.' in response.data
+	assert b'/register/' in request.url
 
 
 
